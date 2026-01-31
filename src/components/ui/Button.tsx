@@ -6,15 +6,34 @@ type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 const base =
-  "inline-flex items-center justify-center rounded-xl font-medium transition " +
-  "focus:outline-none focus:ring-2 focus:ring-accent/35 disabled:opacity-50 disabled:pointer-events-none";
+  "inline-flex items-center justify-center rounded-xl font-semibold transition " +
+  "focus:outline-none focus:ring-2 focus:ring-accent/35 focus:ring-offset-0 " +
+  "disabled:opacity-50 disabled:pointer-events-none select-none " +
+  "active:translate-y-[0.5px]";
 
 const variants: Record<NonNullable<Props["variant"]>, string> = {
-  primary: "bg-gradient-to-r from-accent to-accent2 text-white hover:opacity-95 shadow-card",
+  // CTA forte, premium
+  primary:
+    "text-white shadow-[0_18px_45px_rgba(0,0,0,0.35)] " +
+    "bg-gradient-to-r from-accent to-accent2 hover:opacity-95 " +
+    "ring-1 ring-white/10",
+
+  // Pulsante “glass” per dark UI (non bianco)
   secondary:
-    "bg-white/55 backdrop-blur border border-black/25 hover:bg-white/70 shadow-card",
-  ghost: "hover:bg-black/5 border border-transparent",
-  danger: "bg-red-600 text-white hover:bg-red-700",
+    "text-slate-100 shadow-[0_18px_45px_rgba(0,0,0,0.28)] " +
+    "bg-white/[0.06] backdrop-blur-xl border border-white/10 hover:bg-white/[0.10] " +
+    "ring-1 ring-white/10",
+
+  // Solo testo, ma leggibile su scuro
+  ghost:
+    "text-slate-100/90 " +
+    "hover:bg-white/[0.06] border border-transparent",
+
+  // Danger serio, non “rosso piatto”
+  danger:
+    "text-white shadow-[0_18px_45px_rgba(0,0,0,0.35)] " +
+    "bg-gradient-to-r from-red-600 to-rose-600 hover:opacity-95 " +
+    "ring-1 ring-white/10",
 };
 
 const sizes: Record<NonNullable<Props["size"]>, string> = {

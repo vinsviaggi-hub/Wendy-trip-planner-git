@@ -1,35 +1,112 @@
 @import "tailwindcss";
 
-/* Palette Wendy Trip Planner */
+/* Wendenzo — Coffee SaaS (chiaro, leggibile, non bianco) */
 :root{
   color-scheme: light;
 
-  /* base (meno foglio bianco) */
-  --bg: 212 228 255;        /* azzurro/grigio più pieno */
-  --surface: 255 255 255;   /* card */
-  --ink: 11 18 32;          /* testo */
-  --muted: 85 100 122;      /* secondario */
+  /* base */
+  --bg: 245 236 224;        /* beige caldo */
+  --surface: 255 255 255;   /* usato con alpha */
+  --ink: 30 20 14;          /* testo principale */
+  --muted: 92 72 58;        /* testo secondario */
 
-  /* bordi più visibili (nero) */
-  --line: 11 18 32;         /* poi usiamo alpha nelle classi */
+  /* linee */
+  --line: 58 34 20;         /* marrone scuro (con alpha) */
 
-  /* accenti */
-  --accent: 14 165 233;     /* sky */
-  --accent2: 20 184 166;    /* teal */
-  --sun: 245 158 11;        /* amber */
+  /* accenti “coffee + premium” */
+  --accent: 168 106 74;     /* caramello */
+  --accent2: 92 60 42;      /* moka */
+  --sun: 245 158 11;        /* amber (warning) */
 }
 
-html, body{
-  height: 100%;
-}
+html, body{ height: 100%; }
 
 body{
+  margin: 0;
+  color: rgb(var(--ink));
+
   background:
-    radial-gradient(1100px 700px at 10% 10%, rgba(14,165,233,0.33), transparent 62%),
-    radial-gradient(1100px 760px at 90% 14%, rgba(20,184,166,0.28), transparent 60%),
-    radial-gradient(1000px 680px at 55% 92%, rgba(245,158,11,0.20), transparent 62%),
-    radial-gradient(1200px 900px at 50% 40%, rgba(255,255,255,0.10), rgba(0,0,0,0.08)),
+    radial-gradient(900px 650px at 12% 18%, rgba(168,106,74,0.22), transparent 60%),
+    radial-gradient(900px 650px at 86% 18%, rgba(92,60,42,0.18), transparent 62%),
+    radial-gradient(900px 700px at 60% 92%, rgba(110,66,36,0.14), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,0.10), rgba(0,0,0,0.04)),
     rgb(var(--bg));
   background-attachment: fixed;
-  color: rgb(var(--ink));
+}
+
+/* cards “premium” ma LEGGIBILI */
+@layer utilities {
+  .grad-border{
+    border-radius: 1.5rem;
+    padding: 1px;
+    background:
+      linear-gradient(135deg,
+        rgba(168,106,74,0.34),
+        rgba(92,60,42,0.26),
+        rgba(245,158,11,0.18)
+      );
+  }
+
+  /* ✅ più piene + testo forzato leggibile */
+  .glass{
+    border-radius: 1.5rem;
+    background: rgba(255,255,255,0.52);                 /* <<< più piena */
+    border: 1px solid rgba(58,34,20,0.22);
+    box-shadow: 0 18px 45px rgba(30,16,8,0.12);
+    backdrop-filter: blur(12px);
+    color: rgb(var(--ink));                              /* <<< testo leggibile */
+  }
+
+  .glass-soft{
+    border-radius: 1.25rem;
+    background: rgba(255,255,255,0.42);                 /* <<< più piena */
+    border: 1px solid rgba(58,34,20,0.18);
+    box-shadow: 0 10px 26px rgba(30,16,8,0.10);
+    backdrop-filter: blur(10px);
+    color: rgb(var(--ink));                              /* <<< testo leggibile */
+  }
+
+  /* ✅ se dentro hai classi slate, le rendiamo più scure */
+  .glass .text-slate-900, .glass-soft .text-slate-900 { color: rgb(var(--ink)) !important; }
+  .glass .text-slate-800, .glass-soft .text-slate-800 { color: rgb(var(--muted)) !important; }
+  .glass .text-slate-700, .glass-soft .text-slate-700 { color: rgb(var(--muted)) !important; }
+  .glass .text-slate-600, .glass-soft .text-slate-600 { color: rgb(var(--muted)) !important; }
+
+  /* bottoni leggibili */
+  .btn-primary{
+    color: white;
+    background: linear-gradient(90deg, rgba(168,106,74,1), rgba(92,60,42,1));
+    border: 1px solid rgba(58,34,20,0.25);
+    box-shadow: 0 10px 26px rgba(30,16,8,0.18);
+  }
+  .btn-primary:hover{ opacity: .96; }
+
+  .btn-secondary{
+    color: rgb(var(--ink));
+    background: rgba(255,255,255,0.48);
+    border: 1px solid rgba(58,34,20,0.20);
+  }
+  .btn-secondary:hover{ background: rgba(255,255,255,0.58); }
+}
+
+/* ===== Coffee UI helpers ===== */
+.glass{
+  background: rgba(255,255,255,0.55);
+  border: 1px solid rgba(0,0,0,0.10);
+  border-radius: 1.5rem;
+  box-shadow: 0 18px 45px rgba(30,16,8,0.14);
+  backdrop-filter: blur(14px);
+}
+
+.grad-border{
+  border-radius: 1.7rem;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(120,72,42,0.25), rgba(14,165,233,0.18));
+}
+
+.btn-primary{
+  color: #fff;
+  background: linear-gradient(90deg, rgb(var(--accent)), rgb(var(--accent2)));
+  border: 1px solid rgba(0,0,0,0.10);
+  box-shadow: 0 10px 20px rgba(30,16,8,0.14);
 }

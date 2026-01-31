@@ -1,0 +1,14 @@
+{
+  "tailwindCSS.lint.invalidScreen": "ignore",
+  "tailwindCSS.lint.invalidVariant": "ignore",
+  "tailwindCSS.lint.invalidTailwindDirective": "ignore",
+  "tailwindCSS.lint.invalidApply": "ignore",
+  "tailwindCSS.lint.invalidConfigPath": "ignore",
+  "tailwindCSS.lint.recommendedVariantOrder": "ignore",
+  "tailwindCSS.experimental.classRegex": [
+    "className\\s*=\\s*\"([^\"]*)\"",
+    "className\\s*=\\s*\\{`([^`]*)`\\}",
+    "className\\s*=\\s*\\{\\s*\$begin:math:display$\(\[\^\\$end:math:display$]*)\\]\\s*\\.join\$begin:math:text$\' \'\\$end:math:text$\\s*\\}"
+  ],
+  "tailwindCSS.inspectPort": 0
+}

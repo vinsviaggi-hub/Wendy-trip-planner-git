@@ -14,6 +14,10 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+
 export const metadata: Metadata = {
   title: {
     default: "Wendenzo — Trip Planner",
@@ -22,39 +26,15 @@ export const metadata: Metadata = {
   description:
     "Wendenzo è una piattaforma per creare itinerari giorno per giorno: planner, mappe, note, budget e template. Non è un sito di prenotazioni.",
   applicationName: "Wendenzo",
-  keywords: [
-    "trip planner",
-    "itinerario",
-    "pianificazione viaggio",
-    "travel planner",
-    "template itinerari",
-    "budget viaggio",
-  ],
-  authors: [{ name: "Wendenzo" }],
-  creator: "Wendenzo",
-  metadataBase: new URL("http://localhost:3000"),
-  openGraph: {
-    title: "Wendenzo — Trip Planner",
-    description:
-      "Crea itinerari giorno per giorno con planner, mappe, note e budget. Template pronti e pianificazione su misura.",
-    type: "website",
-    locale: "it_IT",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Wendenzo — Trip Planner",
-    description:
-      "Planner viaggi: itinerari giorno per giorno, mappe, note, budget e template.",
-  },
-  icons: {
-    icon: "/favicon.ico",
-  },
+  metadataBase: new URL(siteUrl),
+  icons: { icon: "/favicon.ico" },
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#5B5AF7", // coerente con accent
+  // ✅ COFFEE (non dark)
+  themeColor: "#f5ece0",
 };
 
 export default function RootLayout({
@@ -63,8 +43,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="it">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <html lang="it" className={`${geistSans.variable} ${geistMono.variable} h-full`}>
+      <body className="min-h-screen antialiased text-[rgb(var(--ink))] bg-[rgb(var(--bg))]">
         {children}
       </body>
     </html>
