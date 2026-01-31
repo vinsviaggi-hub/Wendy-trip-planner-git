@@ -36,6 +36,7 @@ export async function GET(req: Request) {
   const out: CityResult[] = raw
     .map((x) => {
       const a = x.address ?? {};
+
       const city = a.city || a.town || a.village || a.municipality || a.hamlet;
       if (!city) return null;
 
@@ -45,7 +46,8 @@ export async function GET(req: Request) {
       const label = [city, region].filter(Boolean).join(", ");
       return { label, city, region, country: countryName } as CityResult;
     })
-    .filter(Boolean);
+    .filter((v): v is CityResult => v != null);
+
 
   return new Response(JSON.stringify(out), {
     headers: {

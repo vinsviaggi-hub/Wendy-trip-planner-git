@@ -22,6 +22,8 @@ export type Trip = {
   id: string;
   title: string;
   destination?: string;
+  startDate?: string;
+  endDate?: string;
   budget?: number;
   createdAt?: number;
   days: TripDay[];
